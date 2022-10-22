@@ -170,8 +170,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\PPGDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PPGDBModel.Context.cs</LastGenOutput>
       <DependentUpon>PPGDBModel.edmx</DependentUpon>
+      <LastGenOutput>PPGDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\PPGDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

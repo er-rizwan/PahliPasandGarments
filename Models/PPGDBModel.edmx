@@ -13,17 +13,9 @@
           <Property Name="CategoryCode" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PahliPasand.Master.Items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="ItemId" />
-            <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="ItemCode" />
-            <PropertyRef Name="ItemName" />
-            <PropertyRef Name="Description" />
-            <PropertyRef Name="ImagePath" />
-            <PropertyRef Name="ItemPrice" />
           </Key>
           <Property Name="ItemId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
@@ -35,17 +27,7 @@ warning 6002: The table/view 'PahliPasand.Master.Items' does not have a primary 
         </EntityType>
         <EntityContainer Name="PahliPasandModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="Master" store:Type="Tables" />
-          <EntitySet Name="Items" EntityType="Self.Items" store:Type="Tables" store:Schema="Master">
-            <DefiningQuery>SELECT 
-    [Items].[ItemId] AS [ItemId], 
-    [Items].[CategoryId] AS [CategoryId], 
-    [Items].[ItemCode] AS [ItemCode], 
-    [Items].[ItemName] AS [ItemName], 
-    [Items].[Description] AS [Description], 
-    [Items].[ImagePath] AS [ImagePath], 
-    [Items].[ItemPrice] AS [ItemPrice]
-    FROM [Master].[Items] AS [Items]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="Master" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -63,12 +45,6 @@ warning 6002: The table/view 'PahliPasand.Master.Items' does not have a primary 
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="ItemId" />
-            <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="ItemCode" />
-            <PropertyRef Name="ItemName" />
-            <PropertyRef Name="Description" />
-            <PropertyRef Name="ImagePath" />
-            <PropertyRef Name="ItemPrice" />
           </Key>
           <Property Name="ItemId" Type="Guid" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
@@ -78,7 +54,7 @@ warning 6002: The table/view 'PahliPasand.Master.Items' does not have a primary 
           <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="PahliPasandEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PahliPasandGarmentsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Items" EntityType="Self.Item" />
         </EntityContainer>
@@ -87,7 +63,7 @@ warning 6002: The table/view 'PahliPasand.Master.Items' does not have a primary 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PahliPasandModelStoreContainer" CdmEntityContainer="PahliPasandEntities">
+        <EntityContainerMapping StorageEntityContainer="PahliPasandModelStoreContainer" CdmEntityContainer="PahliPasandGarmentsEntities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="PahliPasandModel.Category">
               <MappingFragment StoreEntitySet="Categories">

@@ -11,10 +11,10 @@ namespace PahliPasandGarments.Controllers
 {
     public class ItemController : Controller
     {
-        private PahliPasandEntities objPahliPasandEntities;
+        private PahliPasandGarmentsEntities objPahliPasandEntities;
         public ItemController()
         {
-            objPahliPasandEntities = new PahliPasandEntities();
+            objPahliPasandEntities = new PahliPasandGarmentsEntities();
         }
         // GET: Item
         public ActionResult Index()
@@ -33,9 +33,22 @@ namespace PahliPasandGarments.Controllers
         [HttpPost]
         public JsonResult Index(ItemViewModel objItemViewModel)
         {
+            Item objItem = new Item();
             string newImage = Guid.NewGuid() + Path.GetExtension(objItemViewModel.ImagePath.FileName);
             objItemViewModel.ImagePath.SaveAs(Server.MapPath("~/Images/" + newImage));
-            return Json(data:objItemViewModel.ItemPrice, JsonRequestBehavior.AllowGet);
+
+            objItem.ImagePath = "~/Images/" + newImage;
+            objItem.CategoryId = objItemViewModel.CategoryId;
+            objItem.Description = objItemViewModel.Description;
+            objItem.ItemCode = objItemViewModel.ItemCode;
+            objItem.ItemName = objItemViewModel.ItemName;
+            objItem.ItemPrice = objItemViewModel.ItemPrice;
+            objItem.ItemId = Guid.NewGuid();
+            
+            objPahliPasandEntities.Items.Add(objItem);
+            objPahliPasandEntities.SaveChanges();
+
+            return Json(new {success=true,Message="Added Successfully!" }, JsonRequestBehavior.AllowGet);
          }
     }
 }

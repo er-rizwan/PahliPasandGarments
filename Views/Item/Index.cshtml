@@ -31,9 +31,13 @@
 			processData: false,
 			URL: '/Item/Index',
 			data : formData,
-			success: function (data) {
-				alert(data);
-				Reset();
+			success: function (data)
+			{
+				if (data.success)
+				{
+					alert(data.Message);
+					Reset();
+				}
 			},
 			error: function () {
 				alert('Error!!');

@@ -13,10 +13,10 @@ namespace PahliPasandGarments.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PahliPasandEntities : DbContext
+    public partial class PahliPasandGarmentsEntities : DbContext
     {
-        public PahliPasandEntities()
-            : base("name=PahliPasandEntities")
+        public PahliPasandGarmentsEntities()
+            : base("name=PahliPasandGarmentsEntities")
         {
         }
     
